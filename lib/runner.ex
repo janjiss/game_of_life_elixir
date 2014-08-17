@@ -1,5 +1,5 @@
 defmodule Runner do
-  def run(board \\ inital_state) do
+  def run(board \\ random_intial_state) do
     board |>
     Enum.each(fn (row)-> IO.inspect(row) end)
     IO.puts ""
@@ -9,11 +9,16 @@ defmodule Runner do
     run
   end
 
-  def inital_state do
-    [
-      ~w(x o x),
-      ~w(x o x),
-      ~w(x o x)
-    ]
+  def random_intial_state do
+    Enum.map(1..10, fn (_)->
+      Enum.map(1..10, fn (_) ->
+        :random.seed(:os.timestamp)
+        if :random.uniform > 0.5 do
+          "x"
+        else
+          "o"
+        end
+      end)
+    end)
   end
 end
