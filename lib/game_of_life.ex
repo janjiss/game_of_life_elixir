@@ -36,14 +36,9 @@ defmodule GameOfLife do
     "o"
   end
 
-  def next_state("x", _) do
+  def next_state(_, _) do
     "x"
   end
-
-  def next_state("o", _) do
-    "x"
-  end
-
 
   def get_all_neigbours(board, y_index, x_index) do
     Enum.map(neighbour_coodrdinates, fn({neighbour_y, neighbour_x}) -> 
